@@ -11,7 +11,7 @@ plugins {
 version = "0.1"
 group = "com.demo"
 
-val kotlinVersion=project.properties.get("kotlinVersion")
+val kotlinVersion= project.properties["kotlinVersion"]
 repositories {
     mavenCentral()
     jcenter()
@@ -58,8 +58,6 @@ tasks {
             jvmTarget = "11"
         }
     }
-
-
 }
 
 sourceSets {
