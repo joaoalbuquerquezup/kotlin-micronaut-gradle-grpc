@@ -1,4 +1,5 @@
 import com.google.protobuf.gradle.*
+
 plugins {
     id("org.jetbrains.kotlin.jvm") version "1.4.10"
     id("org.jetbrains.kotlin.kapt") version "1.4.10"
@@ -11,7 +12,10 @@ plugins {
 version = "0.1"
 group = "com.demo"
 
-val kotlinVersion= project.properties["kotlinVersion"]
+val kotlinVersion = project.properties["kotlinVersion"]
+val grpcKotlinVersion = project.properties["grpcKotlinVersion"]
+val grpcVersion = project.properties["grpcVersion"]
+val protocVersion = project.properties["protocVersion"]
 repositories {
     mavenCentral()
     jcenter()
@@ -32,9 +36,12 @@ dependencies {
     implementation("io.micronaut.kotlin:micronaut-kotlin-runtime")
     implementation("io.micronaut:micronaut-runtime")
     implementation("io.micronaut.grpc:micronaut-grpc-runtime")
+    implementation("io.grpc:grpc-kotlin-stub:${grpcKotlinVersion}")
     implementation("javax.annotation:javax.annotation-api")
+
     runtimeOnly("ch.qos.logback:logback-classic")
     runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
+
     testImplementation("io.micronaut:micronaut-http-client")
 }
 
@@ -65,17 +72,21 @@ sourceSets {
         java {
             srcDirs("build/generated/source/proto/main/grpc")
             srcDirs("build/generated/source/proto/main/java")
+            srcDirs("build/generated/source/proto/main/grpckt")
         }
     }
 }
 
 protobuf {
     protoc {
-        artifact = "com.google.protobuf:protoc:3.14.0"
+        artifact = "com.google.protobuf:protoc:${protocVersion}"
     }
     plugins {
         id("grpc") {
-            artifact = "io.grpc:protoc-gen-grpc-java:1.33.1"
+            artifact = "io.grpc:protoc-gen-grpc-java:${grpcVersion}"
+        }
+        id("grpckt") {
+            artifact = "io.grpc:protoc-gen-grpc-kotlin:${grpcKotlinVersion}"
         }
     }
     generateProtoTasks {
@@ -83,6 +94,7 @@ protobuf {
             it.plugins {
                 // Apply the "grpc" plugin whose spec is defined above, without options.
                 id("grpc")
+                id("grpckt")
             }
         }
     }
