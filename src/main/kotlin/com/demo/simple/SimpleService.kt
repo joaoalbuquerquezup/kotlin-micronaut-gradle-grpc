@@ -1,9 +1,9 @@
-package com.demo.rpc
+package com.demo.simple
 
 import javax.inject.Singleton
 
 @Singleton
-class DemoService {
+class SimpleService {
 
     fun execute(name: String): String {
         return name.toUpperCase()
