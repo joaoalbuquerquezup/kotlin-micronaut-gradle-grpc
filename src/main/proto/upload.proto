@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package com.demo.upload;
+
+option java_multiple_files = true;
+
+message Metadata {
+  string fileName = 1;
+  string fileType = 2;
+}
+
+message File {
+  bytes content = 1;
+}
+
+enum UploadStatus {
+  PENDING = 0;
+  IN_PROGRESS = 1;
+  SUCCESS = 2;
+  FAILED = 3;
+}
+
+message FileUploadRequest {
+  oneof request {
+    Metadata metadata = 1;
+    File file = 2;
+  }
+}
+
+message FileUploadResponse {
+  string name = 1;
+  UploadStatus status = 2;
+}
+
+service FileService {
+  rpc Upload(stream FileUploadRequest) returns(FileUploadResponse);
+}
