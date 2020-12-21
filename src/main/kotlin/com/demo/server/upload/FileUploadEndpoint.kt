@@ -12,10 +12,14 @@ import java.nio.file.Files
 import java.nio.file.Paths
 import java.nio.file.StandardOpenOption
 import java.util.UUID
+import javax.inject.Singleton
 
+@Singleton
 class FileUploadEndpoint : FileServiceGrpc.FileServiceImplBase() {
 
     override fun upload(responseObserver: StreamObserver<FileUploadResponse>): StreamObserver<FileUploadRequest> {
+
+        val SERVER_BASE_PATH = Paths.get("src/test/resources/output")
 
         return object : StreamObserver<FileUploadRequest> {
 
@@ -78,9 +82,5 @@ class FileUploadEndpoint : FileServiceGrpc.FileServiceImplBase() {
         } catch (e: Exception) {
             e.printStackTrace()
         }
-    }
-
-    companion object {
-        private val SERVER_BASE_PATH = Paths.get("src/test/resources/output")
     }
 }
