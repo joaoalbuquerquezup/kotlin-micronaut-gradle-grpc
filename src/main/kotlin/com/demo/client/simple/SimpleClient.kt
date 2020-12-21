@@ -1,4 +1,4 @@
-package com.demo.client
+package com.demo.client.simple
 
 import com.demo.simple.SimpleRequest
 import com.demo.simple.SimpleServiceGrpc
