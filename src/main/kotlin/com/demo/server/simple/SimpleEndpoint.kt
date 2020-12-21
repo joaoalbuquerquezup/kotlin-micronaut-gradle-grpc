@@ -13,7 +13,7 @@ class SimpleEndpoint(private val service: SimpleService) : SimpleServiceGrpcKt.S
         println(execute)
 
         val name = request.name.toUpperCase()
-        return SimpleResponse.newBuilder().setMessage(name).build()
+        return SimpleResponse.newBuilder().setMessage("Server message: $name").build()
     }
 
 }
