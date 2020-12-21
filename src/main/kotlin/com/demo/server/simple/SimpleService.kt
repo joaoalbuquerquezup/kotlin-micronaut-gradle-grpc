@@ -1,4 +1,4 @@
-package com.demo.simple
+package com.demo.server.simple
 
 import javax.inject.Singleton
 

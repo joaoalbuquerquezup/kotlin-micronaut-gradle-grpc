@@ -1,6 +1,9 @@
-package com.demo.upload
+package com.demo.server.upload
 
-import com.demo.upload.FileServiceGrpc.FileServiceImplBase
+import com.demo.upload.FileServiceGrpc
+import com.demo.upload.FileUploadRequest
+import com.demo.upload.FileUploadResponse
+import com.demo.upload.UploadStatus
 import com.google.protobuf.ByteString
 import io.grpc.stub.StreamObserver
 import java.io.IOException
@@ -10,7 +13,7 @@ import java.nio.file.Paths
 import java.nio.file.StandardOpenOption
 import java.util.UUID
 
-class FileUploadEndpoint : FileServiceImplBase() {
+class FileUploadEndpoint : FileServiceGrpc.FileServiceImplBase() {
 
     override fun upload(responseObserver: StreamObserver<FileUploadResponse>): StreamObserver<FileUploadRequest> {
 

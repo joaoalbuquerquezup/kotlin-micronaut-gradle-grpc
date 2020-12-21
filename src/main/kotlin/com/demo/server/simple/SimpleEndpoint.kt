@@ -1,4 +1,4 @@
-package com.demo.simple
+package com.demo.server.simple
 
 import com.demo.simple.SimpleRequest
 import com.demo.simple.SimpleResponse
