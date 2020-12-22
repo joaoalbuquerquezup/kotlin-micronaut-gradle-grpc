@@ -39,6 +39,7 @@ dependencies {
     implementation("io.micronaut.grpc:micronaut-grpc-runtime")
     implementation("io.grpc:grpc-kotlin-stub:${grpcKotlinVersion}")
     implementation("javax.annotation:javax.annotation-api")
+    implementation("com.amazonaws:aws-java-sdk-s3:1.11.923")
 
     runtimeOnly("ch.qos.logback:logback-classic")
     runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
