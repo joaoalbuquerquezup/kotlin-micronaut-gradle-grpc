@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package com.demo.upload.unary;
+
+option java_multiple_files = true;
+
+import "upload.proto";
+
+message UploadFileUnaryRequest {
+  string fileName = 1;
+  string fileType = 2;
+  bytes content = 3;
+}
+
+message UploadFileUnaryResponse {
+  string fileName = 1;
+  com.demo.upload.UploadStatus status = 2;
+}
+
+service UploadFileUnaryService {
+  rpc Upload(UploadFileUnaryRequest) returns(UploadFileUnaryResponse);
+}
