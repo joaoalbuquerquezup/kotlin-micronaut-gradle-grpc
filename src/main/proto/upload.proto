@@ -20,18 +20,18 @@ enum UploadStatus {
   FAILED = 3;
 }
 
-message FileUploadRequest {
+message UploadFileRequest {
   oneof request {
     Metadata metadata = 1;
     File file = 2;
   }
 }
 
-message FileUploadResponse {
+message UploadFileResponse {
   string name = 1;
   UploadStatus status = 2;
 }
 
-service FileService {
-  rpc Upload(stream FileUploadRequest) returns(FileUploadResponse);
+service UploadFileService {
+  rpc Upload(stream UploadFileRequest) returns(UploadFileResponse);
 }
