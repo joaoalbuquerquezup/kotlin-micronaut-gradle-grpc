@@ -14,7 +14,6 @@ class UploadFileEndpoint : UploadFileServiceGrpcKt.UploadFileServiceCoroutineImp
     val SERVER_BASE_PATH = Paths.get("src/main/resources/output")
 
     override suspend fun upload(requests: Flow<UploadFileRequest>): UploadFileResponse {
-        print("alooo")
         return UploadFileResponse.newBuilder().setName("teste").setStatus(UploadStatus.SUCCESS).build();
     }
 
