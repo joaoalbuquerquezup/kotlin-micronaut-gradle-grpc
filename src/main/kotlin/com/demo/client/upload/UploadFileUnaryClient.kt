@@ -7,6 +7,9 @@ import io.grpc.ManagedChannelBuilder
 import java.nio.file.Files
 import java.nio.file.Paths
 
+/*
+    Realizar leitura com BufferedInputStream lendo arquivo com chunks de 4kb, por ex
+ */
 suspend fun main() {
     val channel = ManagedChannelBuilder.forAddress("localhost", 50051).usePlaintext().build()
     val stub = UploadFileUnaryServiceGrpcKt.UploadFileUnaryServiceCoroutineStub(channel)
