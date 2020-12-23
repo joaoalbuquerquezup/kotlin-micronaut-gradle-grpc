@@ -1,0 +1,19 @@
+version: '3.0'
+
+services:
+
+  localstack:
+    container_name: "localstack_main"
+    image: localstack/localstack:latest
+    environment:
+      - EDGE_PORT=4566
+      - SERVICES=s3
+      - AWS_ACCESS_KEY_ID=test
+      - AWS_SECRET_ACCESS_KEY=test
+      - AWS_DEFAULT_REGION=us-east-1
+      - AWS_DEFAULT_OUTPUT=json
+    ports:
+      - '4566:4566'
+    volumes:
+      - "${TMPDIR:-/tmp/localstack}:/tmp/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
